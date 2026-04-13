@@ -8,14 +8,20 @@ public class ServiceTest {
     Service service = new Service();
 
     @Test
-    public void testCase1() {
-        double result = service.calculateValue(10, 5, true);
-        assertEquals(50.0, result, 0.01);
+    public void testInvalidOtp() {
+        String result = service.resetPassword("9999", "newPass456");
+        assertEquals("OTP verification failed", result);
     }
 
     @Test
-    public void testCase2() {
-        double result = service.calculateValue(10, 5, false);
-        assertEquals(15.0, result, 0.01);
+    public void testShortPassword() {
+        String result = service.resetPassword("1234", "123");
+        assertEquals("Password too short", result);
+    }
+
+    @Test
+    public void testSuccessfulReset() {
+        String result = service.resetPassword("1234", "newPass456");
+        assertEquals("Password reset successful", result);
     }
 }

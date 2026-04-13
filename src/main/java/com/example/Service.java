@@ -2,16 +2,28 @@ package com.example;
 
 public class Service {
 
-    public double calculateValue(double a, double b, boolean condition) {
+    private String storedOtp = "1234";
+    private String currentPassword = "oldPass123";
 
-        double result;
+    public String resetPassword(String enteredOtp, String newPassword) {
 
-        if (condition) {
-            result = a * b;
-        } else {
-            result = a + b;
+        if (enteredOtp == null || newPassword == null) {
+            return "Invalid input";
         }
 
-        return result;
+        if (!enteredOtp.equals(storedOtp)) {
+            return "OTP verification failed";
+        }
+
+        if (newPassword.length() < 6) {
+            return "Password too short";
+        }
+
+        currentPassword = newPassword;
+        return "Password reset successful";
+    }
+
+    public String getCurrentPassword() {
+        return currentPassword;
     }
 }

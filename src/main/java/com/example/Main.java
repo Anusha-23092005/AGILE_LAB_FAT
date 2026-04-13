@@ -6,8 +6,9 @@ public class Main {
 
         Service service = new Service();
 
-        double result = service.calculateValue(10, 5, true);
+        String result = service.resetPassword("1234", "Anusha-agile");
 
-        System.out.println("Result: " + result);
+        System.out.println(result);
+        System.out.println("Updated Password: " + service.getCurrentPassword());
     }
 }
